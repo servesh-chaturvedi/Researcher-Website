@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Publications{% endblock title %}
+
+{% block nav-ul %}
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    <li class="nav-item px-2">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+
+    <li class="nav-item px-2">
+        <a class="nav-link active" aria-current="page" href="/publications">Publications</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link" href="/contact">Contact</a>
+    </li>
+</ul>
+{% endblock nav-ul %}
+
+{% block body %}
+<div class="container my-4">
+    <div class="mb-5">
+        <h1>Journal Papers</h1>
+
+        {% for i in journal|dictsortreversed:"year" %}
+        
+        <div class="my-5 col-md-7">
+            <p class="fs-4 mb-3 lh-sm">{{i.title}}</p>
+            <div class="d-flex align-items-center justify-content-between">
+                <p class="text-secondary h5 fw-normal">{{i.publisher}}, {{i.year}}</p>
+                <a href="{{i.link}}" target="_blank"><button class="btn btn-primary" type="button">Link</button></a>
+            </div>
+        </div>
+        {% empty %} 
+        <p class="fs-4 mb-3 lh-sm">No content to display</p>
+        {% endfor %}
+    </div>
+
+
+    <hr class="col-md-8">
+
+    <div class="mb-5">
+        <h1 class="mt-5">Conference Papers</h1>
+
+        {% for i in conference|dictsortreversed:"year" %}
+
+        <div class="my-5 col-md-7">
+            <p class="fs-4 mb-3 lh-sm">{{i.title}}</p>
+            <div class="d-flex align-items-center justify-content-between">
+                <p class="text-secondary h5 fw-normal">{{i.publisher}}, {{i.year}}</p>
+                <a href="{{i.link}}" target="_blank"><button class="btn btn-primary" type="button">Link</button></a>
+            </div>
+        </div>
+        {% empty %} 
+        <p class="fs-4 mb-3 lh-sm">No content to display</p>
+        {% endfor %}
+    </div>
+
+    <hr class="col-md-8">
+
+    <div class="mb-5">
+        <h1 class="mt-5">Other</h1>
+
+        {% for i in others|dictsortreversed:"year" %}
+
+        <div class="my-5 col-md-7">
+            <p class="fs-4 mb-3 lh-sm">{{i.title}}</p>
+            <div class="d-flex align-items-center justify-content-between">
+                <p class="text-secondary h5 fw-normal">{{i.publisher}}, {{i.year}}</p>
+                <a href="{{i.link}}" target="_blank"><button class="btn btn-primary" type="button">Link</button></a>
+            </div>
+        </div>  
+
+        {% empty %} 
+        <p class="fs-4 mb-3 lh-sm">No content to display</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock body %}
